@@ -10,6 +10,7 @@ pipeline {
         stage('Verify directory is cloned') {
             steps {
                 sh 'ls -la compliance_verification'
+                sh 'chmod -R 777 ./compliance_verification'
             }
         }
         stage('Verify the version and NTP configuration') {
