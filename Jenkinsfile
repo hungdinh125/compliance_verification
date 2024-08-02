@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Verify the version and NTP configuration') {
             steps {
-                sh "ansible-playbook compliance_verification/compliance.yml -i compliance_verification/inventory --check"
+                sh 'ansible-playbook compliance_verification/compliance.yml -i compliance_verification/inventory --check'
             }
         }
     }
