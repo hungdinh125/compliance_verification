@@ -7,6 +7,11 @@ pipeline {
                      url: 'https://github.com/hungdinh125/compliance_verification.git')
             }
         }
+        stage('Verify directory is cloned') {
+            steps {
+                sh 'ls -la compliance_verification'
+            }
+        }
         stage('Verify the version and NTP configuration') {
             steps {
                 sh 'ansible-playbook compliance_verification/compliance.yml -i compliance_verification/inventory --check'
