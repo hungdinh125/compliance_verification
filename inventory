@@ -1,0 +1,8 @@
+[all:vars]
+ansible_user = d.dinh
+ansible_password = T@0khongbiet042024
+ansible_network_os = ios
+gather_facts=no
+
+[vnhchm01]
+vnhchm01as01 ansible_host=10.148.253.1 ansible_python_interpreter=/home/dean/python/bin/python3

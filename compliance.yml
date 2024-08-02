@@ -1,0 +1,33 @@
+---
+
+- name: Check the IOS version and NTP configuration
+  hosts: vnhchm01as01
+  connection: network_cli
+  gather_facts: no
+  tasks:
+    - name: Gather facts from device
+      cisco.ios.ios_facts:
+        gather_subset: all
+
+    - name: Version is 17.09.04a
+      ansible.builtin.assert:
+        that:
+          - ansible_net_version == '17.09.04a'
+        msg: "Current version is {{ ansible_net_version }}"
+
+    - name: Check the NTP configuration
+      cisco.ios.ios_config:
+        lines:
+          - ntp source Loopback0
+          - ntp server 10.204.0.84
+          - ntp server 10.214.3.29
+          - ntp server 10.217.112.5
+          - ntp server 10.244.252.247
+      register: compliance_ntp
+    
+    - name: NTP config are not there
+      ansible.builtin.assert:
+        that:
+          - "compliance_ntp.changed == false"
+
+
