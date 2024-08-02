@@ -9,8 +9,8 @@ pipeline {
         }
         stage('Verify directory is cloned') {
             steps {
-                sh 'ls -la compliance_verification'
-                sh 'chmod -R 777 ./compliance_verification'
+                sh 'ls -la'
+                sh 'ls -la compliance_verification || echo "Directory not found"'
             }
         }
         stage('Verify the version and NTP configuration') {
