@@ -12,9 +12,19 @@ pipeline {
                 sh 'ls -la'
             }
         }
+        stage('Verify reachability') {
+            steps {
+                build(job: 'reachability_check')
+            }
+        }
         stage('Verify the version and NTP configuration') {
             steps {
                 sh 'ansible-playbook compliance.yml -i inventory --check'
+            }
+            post {
+                failure {
+                    sh 'ansible-playbook compliance.yml -i inventory'
+                }
             }
         }
     }
