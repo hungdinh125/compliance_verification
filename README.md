@@ -55,3 +55,11 @@ ping -c 1 10.148.253.1
 ```
 
 - Next is to add the __reachability_check__ to the main pipeline
+  
+```python
+stage('Verify reachability') {
+  steps {
+    build(job: 'reachability_check')
+    }
+}
+```
