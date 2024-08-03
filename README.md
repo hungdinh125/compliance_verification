@@ -19,7 +19,7 @@ ERROR! the playbook: compliance_verification/compliance.yml could not be found
 #### Remediation
 - Add a stage to verify the directory structure after clone the repo
 
-```Groovy
+```python
 stage('Verify directory is cloned') {
     steps {
         sh 'ls -la'
